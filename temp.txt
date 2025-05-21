@@ -1,1 +1,2 @@
-;lkajsdf;lkjasdf
+To Run --> npm run dev
+To Fetch --> First Sync On your side of github repo then run git pull --no-rebase

@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva } from "class-variance-authority";
-
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
@@ -10,8 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-  "bg-black text-white shadow-xs hover:bg-black/90",
-
+          "bg-black text-white shadow-xs hover:bg-black/90",
         destructive:
           "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
@@ -44,7 +42,6 @@ function Button({
   ...props
 }) {
   const Comp = asChild ? Slot : "button"
-
   return (
     <Comp
       data-slot="button"
