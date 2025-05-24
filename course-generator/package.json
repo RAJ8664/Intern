@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^6.19.5",
     "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -19,6 +20,7 @@
     "nodemon": "^3.1.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
