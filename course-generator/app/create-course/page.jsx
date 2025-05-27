@@ -10,6 +10,7 @@ import SelectOption from './_components/SelectOption'
 import { UserInputContext } from '../_context/UserInputContext'
 import { useContext, useEffect } from 'react'
 import LoadingDialog from './_components/LoadingDialog'
+import { GenerateCourseLayout_AI } from '../../configs/AiModel'
 
 function CreateCourse() {
   const StepperOptions = [
@@ -81,14 +82,19 @@ function CreateCourse() {
       ',Duration:' +
       userCourseInput?.duration +
       ',NoOf Chapters:' +
-      userCourseInput?.topic +
+      userCourseInput?.noOfchapters +
       ',in JSON format '
     const FINAL_PROMPT = BASIC_PROMPT + USER_INPUT_PROMPT
-    Console.log(FINAL_PROMPT)
+
+    /* Prompt that AI will receive */
+    console.log(FINAL_PROMPT)
     const result = await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT)
-    console.log(result.response?.text())
-    console.log(JSON.parse(result.response?.text()))
-    console.log(JSON.parse(result.response?.text()))
+
+    /* Response in text format */
+    console.log(result)
+
+    /* TO Convert into Json format --> JSON.parse(result) --> from text to json format */
+    console.log(JSON.parse(result))
     setLoading(false)
   }
 
@@ -154,7 +160,7 @@ function CreateCourse() {
           {activeIndex == 2 && (
             <Button
               disabled={checkStatus()}
-              onClick={() => setActiveIndex(activeIndex + 1)}
+              onClick={() => GenerateCourseLayout()}
               className='bg-blue-600 however:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition flex items-center gap-2'
             >
               Generate Course
