@@ -22,10 +22,10 @@ function SelectCategory() {
       <div className='grid grid-cols-3 gap-10 px-10 md:px-20'>
         {CategoryList.map((item, index) => (
           <div
-            className={`flex flex-col p-5 border items-center rounded-xl hover:border-purple-400 hover:bg-purple-200 cursor-pointer ${
-              userCourseInput?.category == item.name &&
+            key={item.name}
+            className={`flex flex-col p-5 border items-center rounded-xl hover:border-purple-400 hover:bg-purple-200 cursor-pointer ${userCourseInput?.category == item.name &&
               'border-purple-200 bg-purple-200'
-            }`}
+              }`}
             onClick={() => handleCategoryChange(item.name)}
           >
             <img src={item.icon} width={150} height={50} />
