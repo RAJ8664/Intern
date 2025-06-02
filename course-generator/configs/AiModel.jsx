@@ -9,7 +9,7 @@ export const GenerateCourseLayout_AI = {
       model: 'gemini-2.0-flash',
       config: { responseMimeType: 'application/json' },
       contents: [
-        {
+        { 
           role: 'user',
           parts: [{ text: prompt }],
         },

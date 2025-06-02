@@ -11,6 +11,12 @@ import { UserInputContext } from '../_context/UserInputContext'
 import { useContext, useEffect } from 'react'
 import LoadingDialog from './_components/LoadingDialog'
 import { GenerateCourseLayout_AI } from '../../configs/AiModel'
+import { CourseList } from '@/configs/schema'
+import { useUser } from '@clerk/nextjs'
+import { v4 as uuid4 } from 'uuid'
+import { db } from '@/configs/db'
+import { useRouter } from 'next/navigation'
+
 
 function CreateCourse() {
   const StepperOptions = [
@@ -34,6 +40,8 @@ function CreateCourse() {
   const { userCourseInput, setUserCourseInput } = useContext(UserInputContext)
   const [loading, setLoading] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
+  const {user}=useUser();
+  const router = useRouter();
 
   useEffect(() => {
     console.log(userCourseInput)
@@ -96,6 +104,27 @@ function CreateCourse() {
     /* TO Convert into Json format --> JSON.parse(result) --> from text to json format */
     console.log(JSON.parse(result))
     setLoading(false)
+    SaveCourselayoutInDb(JSON.parse(result))
+  }
+
+
+  const SaveCourselayoutInDb=async(courseLayout)=>{
+    var id = uuid4();// course id
+    setLoading(true)
+    const result = await db.insert(CourseList).values({
+      courseID:id,
+      name: userCourseInput?.topic,
+      level: userCourseInput?.level,
+      category: userCourseInput?.category,
+      courseOutput: courseLayout,
+      createdBy: user?.primaryEmailAddress?.emailAddress,
+      userName:user?.fullName,
+      userProfileImage:user?.imageUrl
+    })
+
+    console.log("finish");
+    setLoading(false);
+    router.push('/create-course/'+id)
   }
 
   return (
