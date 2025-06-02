@@ -11,6 +11,6 @@ export default {
     schema: "./configs/schema.jsx",
     dialect: "postgresql",
     dbCredentials: {
-        url: "postgresql://neondb_owner:npg_s2JS5gzVhTnO@ep-old-math-a5hqvjz1-pooler.us-east-2.aws.neon.tech/AI-Course-Generator?sslmode=require",
+        
     },
 };
