@@ -17,7 +17,6 @@ import { v4 as uuid4 } from 'uuid'
 import { db } from '@/configs/db'
 import { useRouter } from 'next/navigation'
 
-
 function CreateCourse() {
   const StepperOptions = [
     {
@@ -40,8 +39,8 @@ function CreateCourse() {
   const { userCourseInput, setUserCourseInput } = useContext(UserInputContext)
   const [loading, setLoading] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
-  const {user}=useUser();
-  const router = useRouter();
+  const { user } = useUser()
+  const router = useRouter()
 
   useEffect(() => {
     console.log(userCourseInput)
@@ -89,9 +88,11 @@ function CreateCourse() {
       userCourseInput?.level +
       ',Duration:' +
       userCourseInput?.duration +
+      ', include video:' +
+      userCourseInput?.video +
       ',No Of Chapters:' +
       userCourseInput?.noOfchapters +
-      ',in JSON format '
+      ',in JSON format and remember in response mention the response in small letters , like category, topic, level, duration, no_of_chapters, video in json format '
     const FINAL_PROMPT = BASIC_PROMPT + USER_INPUT_PROMPT
 
     /* Prompt that AI will receive */
@@ -107,24 +108,23 @@ function CreateCourse() {
     SaveCourselayoutInDb(JSON.parse(result))
   }
 
-
-  const SaveCourselayoutInDb=async(courseLayout)=>{
-    var id = uuid4();// course id
+  const SaveCourselayoutInDb = async (courseLayout) => {
+    var id = uuid4()
     setLoading(true)
     const result = await db.insert(CourseList).values({
-      courseID:id,
+      courseID: id,
       name: userCourseInput?.topic,
       level: userCourseInput?.level,
       category: userCourseInput?.category,
       courseOutput: courseLayout,
       createdBy: user?.primaryEmailAddress?.emailAddress,
-      userName:user?.fullName,
-      userProfileImage:user?.imageUrl
+      userName: user?.fullName,
+      userProfileImage: user?.imageUrl,
     })
 
-    console.log("finish");
-    setLoading(false);
-    router.push('/create-course/'+id)
+    console.log('finish')
+    setLoading(false)
+    router.push('/create-course/' + id)
   }
 
   return (
