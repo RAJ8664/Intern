@@ -24,6 +24,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.44.1",
+    "firebase": "^11.9.0",
     "lucide-react": "^0.511.0",
     "mime": "^4.0.7",
     "next": "15.3.2",
