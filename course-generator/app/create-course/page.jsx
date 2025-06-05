@@ -89,7 +89,7 @@ function CreateCourse() {
       userCourseInput?.level +
       ',Duration:' +
       userCourseInput?.duration +
-      ',NoOf Chapters:' +
+      ',No Of Chapters:' +
       userCourseInput?.noOfchapters +
       ',in JSON format '
     const FINAL_PROMPT = BASIC_PROMPT + USER_INPUT_PROMPT
