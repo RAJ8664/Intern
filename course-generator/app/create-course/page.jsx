@@ -115,6 +115,7 @@ function CreateCourse() {
       courseID: id,
       name: userCourseInput?.topic,
       level: userCourseInput?.level,
+      includeVideo: userCourseInput?.video,
       category: userCourseInput?.category,
       courseOutput: courseLayout,
       createdBy: user?.primaryEmailAddress?.emailAddress,

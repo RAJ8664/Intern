@@ -23,9 +23,10 @@ function SelectCategory() {
         {CategoryList.map((item, index) => (
           <div
             key={item.name}
-            className={`flex flex-col p-5 border items-center rounded-xl hover:border-purple-400 hover:bg-purple-200 cursor-pointer ${userCourseInput?.category == item.name &&
+            className={`flex flex-col p-5 border items-center rounded-xl hover:border-purple-400 hover:bg-purple-200 cursor-pointer ${
+              userCourseInput?.category == item.name &&
               'border-purple-200 bg-purple-200'
-              }`}
+            }`}
             onClick={() => handleCategoryChange(item.name)}
           >
             <img src={item.icon} width={150} height={50} />
