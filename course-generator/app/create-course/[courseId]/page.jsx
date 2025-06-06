@@ -11,6 +11,9 @@ import { useParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { GenerateCourseLayout_AI } from '../../../configs/AiModel'
 import LoadingDialog from '../_components/LoadingDialog'
+import service from '../../../configs/service'
+import { Chapters } from '../../../configs/schema'
+import { useRouter } from 'next/navigation'
 
 function CourseLayout() {
   const params = useParams()
@@ -18,6 +21,7 @@ function CourseLayout() {
   const { user } = useUser()
   const [course, setCourse] = useState([])
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     courseId && GetCourse()
@@ -34,7 +38,6 @@ function CourseLayout() {
         ),
       )
     setCourse(result[0])
-    console.log(result)
   }
 
   const GenerateChapterContent = async () => {
@@ -48,21 +51,37 @@ function CourseLayout() {
         chapter.chapter_name +
         ', in JSON Format with list of array with field as title, explanation on given chapter in detail, Code Example(code field in <precode> format) if applicable'
 
-      if (index == 0) {
-        try {
-          const result = await GenerateCourseLayout_AI.sendMessage(PROMPT)
+      try {
+        /* Generate Video URL */
+        let videoId = ''
+        service
+          .getVideos(course?.name + ':' + chapter?.chapter_name)
+          .then((resp) => {
+            videoId = resp[0]?.id?.videoId
+          })
+        const result = await GenerateCourseLayout_AI.sendMessage(PROMPT)
+        /* Response in text format */
+        // console.log(result)
+        /* TO Convert into Json format --> JSON.parse(result) --> from text to json format */
+        // console.log(JSON.parse(result))
+        const content = JSON.parse(result)
 
-          /* Response in text format */
-          console.log(result)
-
-          /* TO Convert into Json format --> JSON.parse(result) --> from text to json format */
-          console.log(JSON.parse(result))
-          setLoading(false)
-        } catch (error) {
-          setLoading(false)
-          console.log(error)
-        }
+        /* Need to save the result along with video url in the database */
+        await db.insert(Chapters).values({
+          chapterId: index,
+          courseID: course?.courseID,
+          content: content,
+          videoId: videoId,
+        })
+        setLoading(false)
+      } catch (error) {
+        setLoading(false)
+        console.log(error)
       }
+      await db.update(CourseList).set({
+        publish: true,
+      })
+      router.replace('/create-course/' + course?.courseID + '/finish')
     })
   }
 
