@@ -12,19 +12,6 @@ import { eq } from 'drizzle-orm'
 function CourseBasicInfo({ course, refreshData }) {
   const [selectedFile, setSelectedFile] = useState()
 
-  /* Using Firebase */
-  /*  const onFileSelected = async (event) => {
-     const file = event.target.files[0]
-     setSelectedFile(URL.createObjectURL(file))
-     const fileName = Date.now() + '.jpg'
-     const storageRef = ref(storage, 'ai-course/' + fileName)
-     await uploadBytes(storageRef, file).then((snapshot) => {
-       getDownloadURL(storageRef).then(async (downloadUrl) => {
-         console.log(downloadUrl)
-       })
-     })
-   } */
-
   /* Using Cloudinary */
   const onFileSelected = async (event) => {
     const file = event.target.files[0]
@@ -39,7 +26,7 @@ function CourseBasicInfo({ course, refreshData }) {
         body: formData,
       })
       const data = await res.json()
-      // we can now store data.secure_url or use it wherever needed
+      /* we can now store data.secure_url or use it wherever needed */
       await db
         .update(CourseList)
         .set({
