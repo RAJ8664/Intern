@@ -2,7 +2,7 @@ import React from 'react'
 import { Clock, CheckCircle } from 'lucide-react'
 import EditChapters from './EditChapters'
 
-function ChapterList({ course, refreshData }) {
+function ChapterList({ course, refreshData, edit = true }) {
   return (
     <div className='mt-3 '>
       <h2 className='font-medium text-xl'>Chapters</h2>
@@ -16,11 +16,13 @@ function ChapterList({ course, refreshData }) {
               <div>
                 <h2 className='font-medium text-lg'>
                   {chapter?.chapter_name}{' '}
-                  <EditChapters
-                    course={course}
-                    index={index}
-                    refreshData={refreshData}
-                  />
+                  {edit && (
+                    <EditChapters
+                      course={course}
+                      index={index}
+                      refreshData={refreshData}
+                    />
+                  )}
                 </h2>
                 <p className='text-sm text-gray-500 '>{chapter?.about}</p>
                 <p className='flex gap-2 text-purple-500 items-center'>

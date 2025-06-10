@@ -9,7 +9,7 @@ import { db } from '@/configs/db'
 import { CourseList } from '@/configs/schema'
 import { eq } from 'drizzle-orm'
 
-function CourseBasicInfo({ course, refreshData }) {
+function CourseBasicInfo({ course, refreshData, edit = true }) {
   const [selectedFile, setSelectedFile] = useState()
 
   /* Using Cloudinary */
@@ -46,10 +46,12 @@ function CourseBasicInfo({ course, refreshData }) {
         <div>
           <h2 className='font-bold text-3xl'>
             {course?.courseOutput?.[0]?.course_name}{' '}
-            <EditCourseBasicInfo
-              course={course}
-              refreshData={() => refreshData(true)}
-            />
+            {edit && (
+              <EditCourseBasicInfo
+                course={course}
+                refreshData={() => refreshData(true)}
+              />
+            )}
           </h2>
           <p className='text-sm text-gray-400 mt-3'>
             {course?.courseOutput?.[0]?.description}
@@ -78,12 +80,14 @@ function CourseBasicInfo({ course, refreshData }) {
               className='rounded-xl h-[250px] object-cover cursor-pointer'
             />
           </label>
-          <input
-            type='file'
-            id='upload-image'
-            className='opacity-0'
-            onChange={onFileSelected}
-          ></input>
+          {edit && (
+            <input
+              type='file'
+              id='upload-image'
+              className='opacity-0'
+              onChange={onFileSelected}
+            />
+          )}
         </div>
       </div>
     </div>

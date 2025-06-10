@@ -6,6 +6,7 @@ import { db } from '@/configs/db'
 import { CourseList } from '@/configs/schema'
 import { eq } from 'drizzle-orm'
 import DropdownOption from './DropdownOption'
+import Link from 'next/link'
 
 export function CourseCard({ course, refreshData }) {
   const handleOnDelete = async () => {
@@ -22,12 +23,14 @@ export function CourseCard({ course, refreshData }) {
       className='shadow-sm rounded-lg border p-2
     hover:scale-105 transition-all cursor-pointer mt-4 '
     >
-      <img
-        src={course?.courseBanner}
-        width={300}
-        height={200}
-        className=' w-full h-[200px] object-cover rounded-lg'
-      />
+      <Link href={'/course/' + course?.courseID}>
+        <img
+          src={course?.courseBanner}
+          width={300}
+          height={200}
+          className=' w-full h-[200px] object-cover rounded-lg'
+        />
+      </Link>
       <div className='p-2'>
         <h2 className='font-medium text-lg flex justify-between items-center'>
           {course?.courseOutput[0]?.course_name}
