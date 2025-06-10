@@ -3,9 +3,15 @@ import React from 'react'
 import { useUser } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { UserCourseListContext } from '@/app/_context/UserCourseListContext'
+import { useContext } from 'react'
 
 function AddCourse() {
   const { user } = useUser()
+  const { userCourseList, setUserCourseList } = useContext(
+    UserCourseListContext,
+  )
+
   return (
     <div className='flex item-center justify-between'>
       <div>
@@ -17,7 +23,11 @@ function AddCourse() {
           Create new course with AI, and Share it with your friends.
         </p>
       </div>
-      <Link href={'/create-course'}>
+      <Link
+        href={
+          userCourseList?.length >= 5 ? '/dashboard/upgrade' : '/create-course'
+        }
+      >
         <Button className='bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-3 text-white hover:from-purple-400 hover:to-blue-400 hover:scale-105 hover:shadow-xl transition-all duration-200 focus:ring-2 focus:ring-blue-300'>
           + Create AI course
         </Button>

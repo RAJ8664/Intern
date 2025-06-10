@@ -4,8 +4,14 @@ import { Home, Search, Crown, LogOut } from 'lucide-react'
 import { Progress } from '@/components/ui/progress'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { UserCourseListContext } from '@/app/_context/UserCourseListContext'
+import { useContext } from 'react'
+import { useState } from 'react'
 
 function SideBar() {
+  const { userCourseList, setUserCourseList } = useContext(
+    UserCourseListContext,
+  )
   const Menu = [
     {
       id: 1,
@@ -83,9 +89,9 @@ function SideBar() {
         </ul>
       </nav>
       <div className='absolute bottom-4 left-4 right-4'>
-        <Progress value={33} className='mb-2' />
+        <Progress value={(userCourseList?.length / 5) * 100} className='mb-2' />
         <h2 className='text-xs text-gray-600 mb-3'>
-          3 Out of 5 Course created
+          {userCourseList?.length} Out of 5 Course created
         </h2>
         <div className='bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-3 text-white'>
           <div className='flex items-center justify-between mb-2'>
