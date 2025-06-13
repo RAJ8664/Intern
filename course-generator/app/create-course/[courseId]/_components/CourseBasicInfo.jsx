@@ -8,8 +8,9 @@ import { uploadBytes, ref, getDownloadURL } from 'firebase/storage'
 import { db } from '@/configs/db'
 import { CourseList } from '@/configs/schema'
 import { eq } from 'drizzle-orm'
+import Link from 'next/link'
 
-function CourseBasicInfo({ course, refreshData, edit = true }) {
+function CourseBasicInfo({ course, refreshData, edit = false }) {
   const [selectedFile, setSelectedFile] = useState()
 
   /* Using Cloudinary */
@@ -62,9 +63,13 @@ function CourseBasicInfo({ course, refreshData, edit = true }) {
               {course.category}
             </h2>
           )}
+          {!edit && <Link href={'/course/'+ course?.courseID + "/start"}>
           <Button className='w-full mt-5 bg-purple-600 text-white hover:bg-purple-400'>
             Start
           </Button>
+          </Link>}
+          
+
         </div>
         <div>
           <label htmlFor='upload-image'>
