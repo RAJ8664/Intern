@@ -39,7 +39,6 @@ function CourseLayout() {
       )
     setCourse(result[0])
   }
-
   const GenerateChapterContent = async () => {
     setLoading(true)
     const chapters = course?.courseOutput?.[0]?.chapters

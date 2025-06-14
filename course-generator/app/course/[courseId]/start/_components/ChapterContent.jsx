@@ -1,6 +1,6 @@
-import React from 'react';
-import YouTube from 'react-youtube';
-import ReactMarkdown from 'react-markdown';
+import React from 'react'
+import YouTube from 'react-youtube'
+import ReactMarkdown from 'react-markdown'
 
 const opts = {
   height: '390',
@@ -8,11 +8,10 @@ const opts = {
   playerVars: {
     autoplay: 0,
   },
-};
+}
 
 function ChapterContent({ chapter, content }) {
-  console.log(content);
-
+  console.log(content)
   return (
     <div className='p-10 space-y-10'>
       {/* Chapter Title and Description */}
@@ -37,24 +36,26 @@ function ChapterContent({ chapter, content }) {
 
               {/* Explanation */}
               {item.explanation && (
-                <div className='prose'>{<ReactMarkdown>{item.explanation}</ReactMarkdown>}</div>
+                <div className='prose'>
+                  {<ReactMarkdown>{item.explanation}</ReactMarkdown>}
+                </div>
               )}
 
               {/* Steps */}
               {item.steps && item.steps.length > 0 && (
                 <div className='p-4 bg-gray-900 text-gray-50 mt-3 rounded-md overflow-auto prose prose-inverted space-y-2'>
-                    {item.steps.map((step, i) => (
-                      <ReactMarkdown key={i}>{step}</ReactMarkdown>
-                    ))}
+                  {item.steps.map((step, i) => (
+                    <ReactMarkdown key={i}>{step}</ReactMarkdown>
+                  ))}
                 </div>
               )}
 
               {/* Code */}
               {item.code && (
                 <div className='p-4 bg-gray-900 text-gray-50 mt-3 rounded-md overflow-auto'>
-                    <pre>
-                        <code dangerouslySetInnerHTML={{ __html: item.code }} />
-                    </pre>
+                  <pre>
+                    <code dangerouslySetInnerHTML={{ __html: item.code }} />
+                  </pre>
                 </div>
               )}
 
@@ -62,19 +63,19 @@ function ChapterContent({ chapter, content }) {
               {item.issues &&
                 item.issues.length > 0 &&
                 item.issues.map((issue, i) => (
-                    <div
-                      key={i}
-                      className='bg-yellow-50 p-4 mt-3 rounded-md border border-yellow-500 prose space-y-2'
-                    >
-                        <h4 className='font-semibold'>{issue.issue}</h4>
-                        <ReactMarkdown>{issue.solution}</ReactMarkdown>
-                    </div>
+                  <div
+                    key={i}
+                    className='bg-yellow-50 p-4 mt-3 rounded-md border border-yellow-500 prose space-y-2'
+                  >
+                    <h4 className='font-semibold'>{issue.issue}</h4>
+                    <ReactMarkdown>{issue.solution}</ReactMarkdown>
+                  </div>
                 ))}
             </div>
           ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default ChapterContent;
+export default ChapterContent

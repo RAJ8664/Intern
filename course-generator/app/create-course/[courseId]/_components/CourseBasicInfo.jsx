@@ -63,13 +63,13 @@ function CourseBasicInfo({ course, refreshData, edit = false }) {
               {course.category}
             </h2>
           )}
-          {!edit && <Link href={'/course/'+ course?.courseID + "/start"}>
-          <Button className='w-full mt-5 bg-purple-600 text-white hover:bg-purple-400'>
-            Start
-          </Button>
-          </Link>}
-          
-
+          {!edit && (
+            <Link href={'/course/' + course?.courseID + '/start'}>
+              <Button className='w-full mt-5 bg-purple-600 text-white hover:bg-purple-400'>
+                Start
+              </Button>
+            </Link>
+          )}
         </div>
         <div>
           <label htmlFor='upload-image'>
