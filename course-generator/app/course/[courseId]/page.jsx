@@ -9,6 +9,7 @@ import { useState } from 'react'
 import Header from '@/app/dashboard/_components/Header'
 import CourseDetail from '@/app/create-course/[courseId]/_components/CourseDetail'
 import ChapterList from '@/app/create-course/[courseId]/_components/ChapterList'
+import { use } from 'react'
 
 function Course({ params }) {
   const [course, setCourse] = useState()

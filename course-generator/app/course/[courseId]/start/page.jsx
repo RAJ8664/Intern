@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import ChapterListCard from './_components/ChapterListCard'
@@ -14,6 +13,7 @@ function CourseStart() {
   const [selectedChapterContent, setSelectedChapterContent] = useState(null)
   const [loadingContent, setLoadingContent] = useState(false)
   const [errorContent, setErrorContent] = useState(null)
+  const [valid, setvalid] = useState(false)
 
   // Fetch Course first
   useEffect(() => {
@@ -38,9 +38,6 @@ function CourseStart() {
     }
     GetCourse()
   }, [courseId])
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
-  if (!course) return <div>Course not found</div>
 
   // Handler to fetch chapter details
   const GetSelectedChapterContent = async (chapterId) => {
@@ -63,6 +60,19 @@ function CourseStart() {
     }
   }
 
+  useEffect(() => {
+    if (course && course.courseOutput[0]?.chapters?.length > 0 && !valid) {
+      const firstChapter = course.courseOutput[0].chapters[0]
+      setSelectedChapter(firstChapter)
+      setvalid(true)
+      GetSelectedChapterContent(0) // Fetch content for the first chapter
+    }
+  }, [course])
+
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>Error: {error}</div>
+  if (!course) return <div>Course not found</div>
+
   return (
     <div className='flex'>
       {/* Chapter list side panel*/}
@@ -80,9 +90,11 @@ function CourseStart() {
                   ? 'bg-purple-200'
                   : ''
               }`}
+              /*Todo --> fix the starting page for youtube video */
               onClick={() => {
                 setSelectedChapter(chapter)
                 GetSelectedChapterContent(index)
+                setvalid(true)
               }}
             >
               <ChapterListCard chapter={chapter} index={index} />

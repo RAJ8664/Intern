@@ -39,6 +39,29 @@ function CourseLayout() {
       )
     setCourse(result[0])
   }
+
+  {
+    /* To check if the youtube videoid is valid or not */
+  }
+
+  async function checkValid(videoId) {
+    const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
+    try {
+      const response = await fetch(url)
+      if (!response.ok) {
+        return false
+        // return { valid: false, reason: `HTTP ${response.status}` }
+      }
+      const data = await response.json()
+      return true
+      // return { valid: true, title: data.title }
+    } catch (err) {
+      return false
+      // return { valid: false, reason: 'Fetch failed or embedding blocked' }
+    }
+  }
+
+  /* TODO --> customize the prompt for better and long course content */
   const GenerateChapterContent = async () => {
     setLoading(true)
     const chapters = course?.courseOutput?.[0]?.chapters
@@ -58,6 +81,16 @@ function CourseLayout() {
           .then((resp) => {
             videoId = resp[0]?.id?.videoId
           })
+
+        /* TODO-- > check if videoid is correct or not work */
+        while (checkValid(videoId) == false) {
+          service
+            .getVideos(course?.name + ':' + chapter?.chapter_name)
+            .then((resp) => {
+              videoId = resp[0]?.id?.videoId
+            })
+        }
+
         const result = await GenerateCourseLayout_AI.sendMessage(PROMPT)
         /* Response in text format */
         // console.log(result)

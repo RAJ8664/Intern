@@ -7,8 +7,10 @@ import Link from 'next/link'
 import { UserCourseListContext } from '@/app/_context/UserCourseListContext'
 import { useContext } from 'react'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 function SideBar() {
+  const router = useRouter()
   const { userCourseList, setUserCourseList } = useContext(
     UserCourseListContext,
   )
@@ -43,12 +45,16 @@ function SideBar() {
     <div className='fixed h-full md:w-64 bg-white border-r border-gray-200 shadow-sm'>
       <div className='p-6 border-b border-gray-100'>
         <div className='flex items-center gap-2'>
-          <img src='/logo.png' width={50} height={50} alt='Logo' />
+          <img
+            src='/logo.png'
+            onClick={() => router.push('/')}
+            width={50}
+            height={50}
+            alt='Logo'
+          />
           <hr className='my-5' />
           <div>
-            <h1 className='text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent'>
-              TEAM NVNR
-            </h1>
+            <h1 className='text-xl font-bold text-white'>TEAM NVNR</h1>
             <p className='text-xs text-gray-500'>AI Course Generator</p>
           </div>
         </div>

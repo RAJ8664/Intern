@@ -75,6 +75,27 @@ function CreateCourse() {
     return false
   }
 
+  /* Ollama to generate the content */
+  const Ollama_Generate = async (prompt) => {
+    try {
+      const response = await fetch('/api/ollama', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: prompt }),
+      })
+      if (!response.ok) {
+        throw new Error('Failed to get response from Ollama API')
+      }
+      const data = await response.json()
+      return data.message
+    } catch (error) {
+      console.error('Client callOllama error:', error)
+      return 'Sorry, there was a problem getting a response.'
+    }
+  }
+
   const GenerateCourseLayout = async () => {
     setLoading(true)
     const BASIC_PROMPT =
@@ -97,7 +118,12 @@ function CreateCourse() {
 
     /* Prompt that AI will receive */
     console.log(FINAL_PROMPT)
+
+    /* Using Gemini Api */
     const result = await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT)
+
+    /* Using Ollama */
+    // const result = await Ollama_Generate(FINAL_PROMPT)
 
     /* Response in text format */
     console.log(result)

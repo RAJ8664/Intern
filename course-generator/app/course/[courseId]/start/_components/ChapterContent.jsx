@@ -11,16 +11,36 @@ const opts = {
 }
 
 function ChapterContent({ chapter, content }) {
-  console.log(content)
   return (
     <div className='p-10 space-y-10'>
       {/* Chapter Title and Description */}
-      <h2 className='font-semibold text-2xl'>{chapter?.chapter_name}</h2>
+      <h2 className='font-semibold text-2xl text-purple-500'>
+        {chapter?.chapter_name}
+      </h2>
       <p className='text-gray-500'>{chapter?.about}</p>
 
-      {/* Video Section */}
-      <div className='flex justify-center items-center mt-10 mb-10'>
-        <YouTube videoId={content?.videoId} opts={opts} />
+      {/* Youtube Video Content */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <div
+          style={{
+            border: '2px solid purple',
+            width: '640px',
+            height: '390px',
+            boxSizing: 'content-box',
+          }}
+        >
+          <YouTube
+            key={content?.videoId}
+            videoId={content?.videoId}
+            opts={opts}
+          />
+        </div>
       </div>
 
       {/* Content List */}
@@ -32,7 +52,9 @@ function ChapterContent({ chapter, content }) {
               className='p-5 bg-sky-50 rounded-md shadow-md space-y-4'
             >
               {/* Title */}
-              <h3 className='font-semibold text-lg'>{item.title}</h3>
+              <h3 className='font-semibold text-lg text-purple-500'>
+                {item.title}
+              </h3>
 
               {/* Explanation */}
               {item.explanation && (
