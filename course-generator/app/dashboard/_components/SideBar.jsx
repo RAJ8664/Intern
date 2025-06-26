@@ -95,9 +95,12 @@ function SideBar() {
         </ul>
       </nav>
       <div className='absolute bottom-4 left-4 right-4'>
-        <Progress value={(userCourseList?.length / 5) * 100} className='mb-2' />
+        <Progress
+          value={(userCourseList?.length / 15) * 100}
+          className='mb-2'
+        />
         <h2 className='text-xs text-gray-600 mb-3'>
-          {userCourseList?.length} Out of 5 Course created
+          {userCourseList?.length} Out of 15 Course created
         </h2>
         <div className='bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-3 text-white'>
           <div className='flex items-center justify-between mb-2'>

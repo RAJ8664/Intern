@@ -8,6 +8,7 @@ import { useContext } from 'react'
 
 function AddCourse() {
   const { user } = useUser()
+
   const { userCourseList, setUserCourseList } = useContext(
     UserCourseListContext,
   )
@@ -22,10 +23,11 @@ function AddCourse() {
         <p className='text-sm text-gray-500'>
           Create new course with AI, and Share it with your friends.
         </p>
+        <h1> {user?.primaryEmailAddress?.emailAddress} </h1>
       </div>
       <Link
         href={
-          userCourseList?.length >= 5 ? '/dashboard/upgrade' : '/create-course'
+          userCourseList?.length >= 6 ? '/dashboard/upgrade' : '/create-course'
         }
       >
         <Button className='bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-3 text-white hover:from-purple-400 hover:to-blue-400 hover:scale-105 hover:shadow-xl transition-all duration-200 focus:ring-2 focus:ring-blue-300'>

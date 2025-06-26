@@ -16,13 +16,13 @@ function ChapterList({ course, refreshData, edit = true }) {
               <div>
                 <h2 className='font-medium text-lg'>
                   {chapter?.chapter_name}{' '}
-                  {edit && (
+                  {
                     <EditChapters
                       course={course}
                       index={index}
                       refreshData={refreshData}
                     />
-                  )}
+                  }
                 </h2>
                 <p className='text-sm text-gray-500 '>{chapter?.about}</p>
                 <p className='flex gap-2 text-purple-500 items-center'>

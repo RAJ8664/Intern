@@ -67,11 +67,11 @@ function CourseLayout() {
     const chapters = course?.courseOutput?.[0]?.chapters
     chapters.forEach(async (chapter, index) => {
       const PROMPT =
-        'Explain the concept in Detail on topic: ' +
+        'Explain the concept in Detail meaning more than 100 lines of explanations on topic: ' +
         course?.name +
         ', chapter: ' +
         chapter.chapter_name +
-        ', in JSON Format with list of array with field as title, explanation on given chapter in detail, Code Example(code field in <precode> format) if applicable'
+        ', in JSON Format with list of array with field as title, explanation on given chapter in detail, Code Example(code field in <precode> format) if applicable and make sure to produce the output in formated form, it should look visually appealing'
 
       try {
         /* Generate Video URL */

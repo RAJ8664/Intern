@@ -1,6 +1,7 @@
 import React from 'react'
 import YouTube from 'react-youtube'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const opts = {
   height: '390',
@@ -58,9 +59,13 @@ function ChapterContent({ chapter, content }) {
 
               {/* Explanation */}
               {item.explanation && (
-                <div className='prose'>
-                  {<ReactMarkdown>{item.explanation}</ReactMarkdown>}
-                </div>
+                <section className='prose' aria-label='Explanation'>
+                  {
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {item.explanation}
+                    </ReactMarkdown>
+                  }
+                </section>
               )}
 
               {/* Steps */}

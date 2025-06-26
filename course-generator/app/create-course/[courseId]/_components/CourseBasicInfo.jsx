@@ -47,12 +47,12 @@ function CourseBasicInfo({ course, refreshData, edit = false }) {
         <div>
           <h2 className='font-bold text-3xl'>
             {course?.courseOutput?.[0]?.course_name}{' '}
-            {edit && (
+            {
               <EditCourseBasicInfo
                 course={course}
                 refreshData={() => refreshData(true)}
               />
-            )}
+            }
           </h2>
           <p className='text-sm text-gray-400 mt-3'>
             {course?.courseOutput?.[0]?.description}
@@ -63,13 +63,13 @@ function CourseBasicInfo({ course, refreshData, edit = false }) {
               {course.category}
             </h2>
           )}
-          {!edit && (
+          {
             <Link href={'/course/' + course?.courseID + '/start'}>
               <Button className='w-full mt-5 bg-purple-600 text-white hover:bg-purple-400'>
                 Start
               </Button>
             </Link>
-          )}
+          }
         </div>
         <div>
           <label htmlFor='upload-image'>
@@ -85,14 +85,14 @@ function CourseBasicInfo({ course, refreshData, edit = false }) {
               className='rounded-xl h-[250px] object-cover cursor-pointer'
             />
           </label>
-          {edit && (
+          {
             <input
               type='file'
               id='upload-image'
               className='opacity-0'
               onChange={onFileSelected}
             />
-          )}
+          }
         </div>
       </div>
     </div>
