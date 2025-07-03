@@ -8,9 +8,29 @@ import { UserCourseListContext } from '@/app/_context/UserCourseListContext'
 import { useContext } from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useUser } from '@clerk/nextjs'
 
 function SideBar() {
+  const { user } = useUser()
+  let myEmail = user?.primaryEmailAddress?.emailAddress
+  let val = 5
+  let count = 0
+  const [isCollege, setisCollege] = useState(false)
+
+  if (true && count <= 1) count++
+  if (
+    typeof myEmail === 'string' &&
+    myEmail.endsWith('nits.ac.in') &&
+    isCollege == false &&
+    count <= 1
+  ) {
+    setisCollege(true)
+    count++
+  }
+  if (isCollege == true) val = 50
+
   const router = useRouter()
+
   const { userCourseList, setUserCourseList } = useContext(
     UserCourseListContext,
   )
@@ -100,17 +120,21 @@ function SideBar() {
           className='mb-2'
         />
         <h2 className='text-xs text-gray-600 mb-3'>
-          {userCourseList?.length} Out of 15 Course created
+          {userCourseList?.length} Out of {val} Course created
         </h2>
         <div className='bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-3 text-white'>
           <div className='flex items-center justify-between mb-2'>
             <div className='flex items-center gap-1'>
               <Crown size={14} />
               <span className='font-medium text-xs'>Upgrade Pro</span>
+              <Link
+                href='/dashboard/upgrade'
+                className='bg-white text-purple-600 text-xs font-medium px-4 py-1 rounded-md hover:bg-gray-50 transition-colors'
+              >
+                {''}
+                Get Pro
+              </Link>
             </div>
-            <button className='bg-white text-purple-600 text-xs font-medium px-3 py-1 rounded-md hover:bg-gray-50 transition-colors'>
-              Get Pro
-            </button>
           </div>
           <p className='text-xs opacity-80'>Unlimited courses & AI features</p>
         </div>

@@ -124,16 +124,20 @@ function CourseLayout() {
       <LoadingDialog loading={loading} />
       {/* Basic Info */}
       <CourseBasicInfo course={course} refreshData={() => GetCourse()} />
+      <Button
+        onClick={GenerateChapterContent}
+        className=' bg-purple-500
+                my-10'
+      >
+        {' '}
+        Generate Course Content{' '}
+      </Button>
 
       {/* Course Detail */}
       <CourseDetail course={course} />
 
       {/* List of Lesson */}
       <ChapterList course={course} refreshData={() => GetCourse()} />
-      <Button onClick={GenerateChapterContent} className='my-10'>
-        {' '}
-        Generate Course Content{' '}
-      </Button>
     </div>
   )
 }
