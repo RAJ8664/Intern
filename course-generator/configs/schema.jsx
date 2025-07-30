@@ -24,3 +24,8 @@ export const Chapters = pgTable('chapters', {
   content: json('content').notNull(),
   videoId: varchar('videoId').notNull(),
 })
+
+export const authors = pgTable('authors', {
+  id: serial('id').primaryKey(),
+  name: varchar('name').notNull(),
+})

@@ -9,6 +9,7 @@ import { useContext } from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@clerk/nextjs'
+import { useSearchParams } from 'next/navigation'
 
 function SideBar() {
   const { user } = useUser()
@@ -34,6 +35,11 @@ function SideBar() {
   const { userCourseList, setUserCourseList } = useContext(
     UserCourseListContext,
   )
+
+  const searchParams = useSearchParams()
+  console.log(searchParams.get('val'))
+  val += Number(searchParams.get('val'))
+
   const Menu = [
     {
       id: 1,

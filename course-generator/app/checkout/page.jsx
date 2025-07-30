@@ -1,8 +1,11 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Checkout() {
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  const val = 50
 
   const loadRazorpay = (src) => {
     return new Promise((resolve) => {
@@ -24,8 +27,6 @@ export default function Checkout() {
       return
     }
 
-    console.log('first')
-
     const handlePayment = async () => {
       const res = await fetch('/api/razorpay', {
         method: 'POST',
@@ -35,8 +36,6 @@ export default function Checkout() {
       console.log('Order:', data)
     }
 
-    console.log('second')
-
     const options = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       name: 'Team NVNR',
@@ -45,6 +44,7 @@ export default function Checkout() {
       handler: (response) => {
         alert('Payment successful!')
         console.log(response)
+        router.push(`/dashboard?val=${val}`)
       },
       theme: {
         color: '#3399cc',
@@ -57,11 +57,59 @@ export default function Checkout() {
   }
 
   return (
-    <div style={{ padding: 40 }}>
-      <h1>Razorpay Payment Page</h1>
-      <button onClick={handlePayment} disabled={loading}>
-        {loading ? 'Processing...' : 'Pay ₹500'}
-      </button>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+        fontFamily: 'Inter, sans-serif',
+      }}
+    >
+      <div
+        style={{
+          background: '#fff',
+          padding: 48,
+          borderRadius: 20,
+          boxShadow: '0 8px 32px rgba(60,60,120,0.15)',
+          minWidth: 340,
+          textAlign: 'center',
+        }}
+      >
+        <h1
+          style={{
+            marginBottom: 32,
+            fontWeight: 700,
+            fontSize: 28,
+            color: '#2d3748',
+          }}
+        >
+          Razorpay Payment Page
+        </h1>
+        <button
+          onClick={handlePayment}
+          disabled={loading}
+          style={{
+            padding: '16px 48px',
+            fontSize: 20,
+            fontWeight: 600,
+            borderRadius: 12,
+            border: 'none',
+            background: loading
+              ? 'linear-gradient(90deg, #b2bec3 0%, #636e72 100%)'
+              : 'linear-gradient(90deg, #38b2ac 0%, #4299e1 100%)',
+            color: '#fff',
+            cursor: loading ? 'not-allowed' : 'pointer',
+            boxShadow: '0 4px 16px rgba(56,178,172,0.15)',
+            transition: 'background 0.2s, transform 0.2s',
+            outline: 'none',
+            transform: loading ? 'scale(1)' : 'scale(1.03)',
+          }}
+        >
+          {loading ? 'Processing...' : 'Pay ₹500'}
+        </button>
+      </div>
     </div>
   )
 }

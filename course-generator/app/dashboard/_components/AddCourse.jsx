@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { UserCourseListContext } from '@/app/_context/UserCourseListContext'
 import { useContext } from 'react'
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 function AddCourse() {
   const { user } = useUser()
@@ -30,6 +31,11 @@ function AddCourse() {
     UserCourseListContext,
   )
 
+  const searchParams = useSearchParams()
+  val += Number(searchParams.get('val'))
+
+  console.log(val)
+
   return (
     <div className='flex item-center justify-between'>
       <div>
@@ -49,7 +55,7 @@ function AddCourse() {
             : '/create-course'
         }
       >
-        <Button className='bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-3 text-white hover:from-purple-400 hover:to-blue-400 hover:scale-105 hover:shadow-xl transition-all duration-200 focus:ring-2 focus:ring-blue-300'>
+        <Button className='bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-3 text-white hover:from-purple-400 hover:to-blue-400 hover:scale-105 hover:shadow-xl transition-all duration-200 focus:ring-2 focus:ring-blue-300 bg-purple-500'>
           + Create AI course
         </Button>
       </Link>
