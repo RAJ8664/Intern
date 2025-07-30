@@ -61,7 +61,7 @@ To get a local copy up and running, follow these simple steps.
 
     NEXT_PUBLIC_CLOUDINARY_API_KEY=
     NEXT_PUBLIC_CLOUDINARY_API_SECRET=
-    NEXT_PUBLIC_CLOUDINARY_API_URL=CLOUDINARY_URL=
+    NEXT_PUBLIC_CLOUDINARY_API_URL=
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
 
     NEXT_PUBLIC_YOUTUBE_API_KEY=
@@ -70,11 +70,6 @@ To get a local copy up and running, follow these simple steps.
 
     RAZORPAY_KEY_ID=your_razorpay_key_id
     RAZORPAY_KEY_SECRET=your_razorpay_key_secret
-
-    ```
-
-    ```
-
     ```
 
 5.  **Push the database schema**
