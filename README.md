@@ -98,41 +98,13 @@ To get a local copy up and running, follow these simple steps.
 
 ## Screenshots
 
-| ![Image 1](./screenshots/first.png) | ![Image 2](./screenshots/second.png)  | ![Image 3](./screenshots/third.png) | ![Image 4](./screenshots/fourth.png) | ![Image 5](./screenshots/fifth.png)  |
-| ----------------------------------- | ------------------------------------- | ----------------------------------- | ------------------------------------ | ------------------------------------ |
-| ![Image 6](./screenshots/sixth.png) | ![Image 7](./screenshots/seventh.png) | ![Image 8](./screenshots/eigth.png) | ![Image 9](./screenshots/nineth.png) | ![Image 10](./screenshots/tenth.png) |
-
-### Home Page
-
-![Home Page](placeholder.png)
-_A brief description of the home page._
-
-### Sign-In Page
-
-![Sign-In Page](placeholder.png)
-_A brief description of the sign-in page._
-
-### Dashboard
-
-![Dashboard](placeholder.png)
-_A brief description of the dashboard._
-
-### Course Creation
-
-![Course Creation](placeholder.png)
-_A brief description of the course creation process._
-
-### Course View
-
-![Course View](placeholder.png)
-_A brief description of the course view page._
+| ![Image 1](./screenshots/first.png)   | ![Image 2](./screenshots/second.png) |
+| ------------------------------------- | ------------------------------------ |
+| ![Image 3](./screenshots/third.png)   | ![Image 4](./screenshots/fourth.png) |
+| ![Image 5](./screenshots/fifth.png)   | ![Image 6](./screenshots/sixth.png)  |
+| ![Image 7](./screenshots/seventh.png) | ![Image 8](./screenshots/eigth.png)  |
+| ![Image 9](./screenshots/nineth.png)  | ![Image 10](./screenshots/tenth.png) |
 
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_twitter) - your_email@example.com
-
-Project Link: [https://github.com/your_username/your_project_name](https://github.com/your_username/your_project_name)
