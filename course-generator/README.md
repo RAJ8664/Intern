@@ -35,9 +35,9 @@ To get a local copy up and running, follow these simple steps.
 ### Installation
 
 1.  **Clone the repo**
-    ````sh
-    git clone https://github.com/RAJ8664/Intern.git    ```
-    ````
+    ```sh
+    git clone https://github.com/RAJ8664/Intern.git
+    ```
 2.  **Navigate to the project directory**
     ```sh
     cd course-generator
