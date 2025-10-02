@@ -1,5 +1,5 @@
-'use client'
 export const dynamic = 'force-dynamic'
+    ; ('use client')
 import React, { useEffect } from 'react'
 import { db } from '@/configs/db'
 import { CourseList } from '@/configs/schema'
