@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { neon } from '@neondatabase/serverless'
 import { drizzle } from 'drizzle-orm/neon-http'
 

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { json, pgTable, serial, varchar } from 'drizzle-orm/pg-core'
 import { boolean } from 'drizzle-orm/pg-core'
 import { integer } from 'drizzle-orm/pg-core'
