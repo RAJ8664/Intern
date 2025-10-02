@@ -1,4 +1,6 @@
 'use client'
+
+export const dynamic = 'force-dynamic'
 import React from 'react'
 import { db } from '@/configs/db'
 import { CourseList } from '@/configs/schema'
