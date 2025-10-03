@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "pages/api/**/*.js": {
+      "runtime": "nodejs18.x"
+    },
+    "app/api/**/*.js": {
+      "runtime": "nodejs18.x"
+    },
+    "middleware.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
