@@ -1,5 +1,4 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
-import { createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isProtectedRoute = createRouteMatcher([
 	"/dashboard(.*)",
@@ -18,5 +17,5 @@ export const config = {
 		// Always run for API routes
 		"/(api|trpc)(.*)",
 	],
+	runtime: "nodejs",
 };
-
