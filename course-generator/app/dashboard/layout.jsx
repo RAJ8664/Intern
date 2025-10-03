@@ -1,7 +1,7 @@
 'use client'
 
 export const dynamic = 'force-dynamic'
-import React from 'react'
+import React, { Suspense } from 'react'
 import SideBar from './_components/SideBar'
 import Header from './_components/Header'
 import { useContext } from 'react'
@@ -17,7 +17,9 @@ function DashboardLayout({ children }) {
             {' '}
             <div>
                 <div className='md:w-64 hidden md:block'>
-                    <SideBar />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <SideBar />
+                    </Suspense>
                 </div>
                 <div className='md:ml-64 '>
                     <Header />
