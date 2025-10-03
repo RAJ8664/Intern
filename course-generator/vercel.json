@@ -1,12 +1,6 @@
 {
   "functions": {
-    "pages/api/**/*.js": {
-      "runtime": "nodejs18.x"
-    },
-    "app/api/**/*.js": {
-      "runtime": "nodejs18.x"
-    },
-    "middleware.js": {
+    "middleware": {
       "runtime": "nodejs18.x"
     }
   }
