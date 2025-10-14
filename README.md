@@ -1,10 +1,17 @@
 # AI-Powered Course Generator
 
-<a href="https://intern-ten-pi.vercel.app/" target="_blank" rel="noopener noreferrer">Checkout the Website</a>
+<div align = "center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Gemini API](https://img.shields.io/badge/Gemini%20API-4285F4?style=flat&logo=google&logoColor=white)](https://ai.google.dev/gemini-api)
+
+</div>
 
 An innovative platform that leverages AI to generate comprehensive courses on any topic. Users can create, customize, and learn educational content effortlessly.
+
+<a href="https://intern-ten-pi.vercel.app/" target="_blank" rel="noopener noreferrer">Checkout the Website</a>
 
 ## About The Project
 

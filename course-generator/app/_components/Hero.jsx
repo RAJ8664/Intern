@@ -11,7 +11,7 @@ function hero() {
                         AI Course Generator
                         <strong className='text-purple-600'>
                             {' '}
-                            Custome Learning Path Powered by AI{' '}
+                            Custom Learning Path Powered by AI{' '}
                         </strong>
                     </h1>
                     <p className='mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed dark:text-gray-200'>
