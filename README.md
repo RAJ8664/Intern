@@ -1,5 +1,7 @@
 # AI-Powered Course Generator
 
+<a href="https://intern-ten-pi.vercel.app/" target="_blank" rel="noopener noreferrer">Checkout the Website</a>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 An innovative platform that leverages AI to generate comprehensive courses on any topic. Users can create, customize, and learn educational content effortlessly.
