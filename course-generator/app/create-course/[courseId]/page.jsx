@@ -46,20 +46,33 @@ function CourseLayout() {
         /* To check if the youtube videoid is valid or not */
     }
 
+    // async function checkValid(videoId) {
+    //     const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
+    //     try {
+    //         const response = await fetch(url)
+    //         if (!response.ok) {
+    //             return false
+    //             // return { valid: false, reason: `HTTP ${response.status}` }
+    //         }
+    //         const data = await response.json()
+    //         return true
+    //         // return { valid: true, title: data.title }
+    //     } catch (err) {
+    //         return false
+    //         // return { valid: false, reason: 'Fetch failed or embedding blocked' }
+    //     }
+    // }
+
     async function checkValid(videoId) {
+        if (!videoId) return false
         const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
         try {
             const response = await fetch(url)
-            if (!response.ok) {
-                return false
-                // return { valid: false, reason: `HTTP ${response.status}` }
-            }
+            if (!response.ok) return false
             const data = await response.json()
-            return true
-            // return { valid: true, title: data.title }
+            return !!data.title // true if valid
         } catch (err) {
             return false
-            // return { valid: false, reason: 'Fetch failed or embedding blocked' }
         }
     }
 
