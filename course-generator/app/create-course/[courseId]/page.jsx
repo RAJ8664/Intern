@@ -63,14 +63,30 @@ function CourseLayout() {
     //     }
     // }
 
+    // async function checkValid(videoId) {
+    //     if (!videoId) return false
+    //     const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
+    //     try {
+    //         const response = await fetch(url)
+    //         if (!response.ok) return false
+    //         const data = await response.json()
+    //         return !!data.title // true if valid
+    //     } catch (err) {
+    //         return false
+    //     }
+    // }
+    //
+
+    // Client-safe check (runs fine on Vercel)
     async function checkValid(videoId) {
         if (!videoId) return false
-        const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
+
         try {
-            const response = await fetch(url)
-            if (!response.ok) return false
-            const data = await response.json()
-            return !!data.title // true if valid
+            const res = await fetch(
+                `/api/checkVideo?id=${videoId}`, // <-- call your own API instead of YouTube directly
+            )
+            const data = await res.json()
+            return data.valid
         } catch (err) {
             return false
         }
@@ -98,13 +114,30 @@ function CourseLayout() {
                     })
 
                 /* TODO-- > check if videoid is correct or not work */
-                while (checkValid(videoId) == false) {
-                    service
-                        .getVideos(course?.name + ':' + chapter?.chapter_name)
-                        .then((resp) => {
-                            videoId = resp[0]?.id?.videoId
-                        })
+                // while (checkValid(videoId) == false) {
+                //     service
+                //         .getVideos(course?.name + ':' + chapter?.chapter_name)
+                //         .then((resp) => {
+                //             videoId = resp[0]?.id?.videoId
+                //         })
+                // }
+
+                let valid = false
+                let attempts = 0
+
+                while (!valid && attempts < 5) {
+                    const resp = await service.getVideos(
+                        `${course?.name}:${chapter?.chapter_name}`,
+                    )
+                    videoId = resp?.[0]?.id?.videoId
+                    valid = await checkValid(videoId)
+                    attempts++
                 }
+
+                // if (!valid) {
+                //     console.warn('No valid video found for:', chapter.chapter_name)
+                //     continue // skip saving this chapter
+                // }
 
                 const result = await GenerateCourseLayout_AI.sendMessage(PROMPT)
                 /* Response in text format */
